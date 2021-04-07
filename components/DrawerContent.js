@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Linking, StyleSheet, View } from 'react-native';
+import { Linking, StatusBar, StyleSheet, View } from 'react-native';
 import{
   Avatar,
   Title,
@@ -12,11 +12,18 @@ import{
 } from 'react-native-paper';
 import {
   DrawerContentScrollView,
-  DrawerItem
+  DrawerItem,
+  useIsDrawerOpen
 } from '@react-navigation/drawer';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function DrawerContent({navigation}) {
+  const isDrawerOpen = useIsDrawerOpen();
+  if(isDrawerOpen){
+    StatusBar.setHidden(true);
+  }else{
+    StatusBar.setHidden(false);
+  }
   return (
     <View>
       <Drawer.Section style={styles.TopDrawerSection}>
@@ -27,8 +34,8 @@ export default function DrawerContent({navigation}) {
                 </Avatar.Text>
               </View>
               <View style={{flexDirection : 'column'}}>
-                <Text styles={{color: '#FFF'}}>Krunal Makwana</Text>
-                <Caption styles={{color: '#FFF'}}>7405076858</Caption>
+                <Text style={{color: '#FFF'}}>Krunal Makwana</Text>
+                <Caption style={{color: '#FFF'}}>7405076858</Caption>
               </View>
             </View>
           </View>
