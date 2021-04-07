@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, Dimensions, Image } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable, View, Dimensions, Image, ScrollView, TouchableOpacity } from "react-native";
 import ModelCarousel from "./ModelCarousel";
 import BannerCarousel from "./BannerCarousel";
-import CardView from 'react-native-cardview';
-import { ScrollView } from "react-native-gesture-handler";
-import Navigation from "../Navigation";
-import { useNavigation, useNavigationState } from "@react-navigation/core";
 
 const window = Dimensions.get('window');
 
@@ -25,33 +21,24 @@ export default class Home extends React.Component {
   }
 
   render(){
+    const { navigation } = this.props;
     return (
       <ScrollView>
           <View>
             <ModelCarousel />
             <BannerCarousel />
-            <View style={styles.MainContainer} >
-              {/* <View style={styles.CardMainContainer}>
-                <CardView
-                    cardElevation={2}
-                    cardMaxElevation={2}
-                    cornerRadius={5}
-                    style={styles.cardContainer}>
-                    <View style={styles.cardViewStyle}>
-                        <Text>
-                          All
-                        </Text>
-                    </View>
-                </CardView>
-              </View> */}
+            <View style={styles.MainContainer}>
+              
               {
                 this.state.categoryList.map((item, index) => (
-                  <View style={styles.CardMainContainer}>
-                    <View style={styles.cardContainer}>
-                          <View style={styles.item}>
-                              <Image style={styles.image} source={{uri : item.CategoryImageUrl}}  />
-                          </View>
-                    </View>
+                  <View style={styles.CardMainContainer} key={index}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Product',{ screen: 'Product', params: { CategoryId: item.CategoryId} })}>
+                      <View style={styles.cardContainer}>
+                            <View style={styles.item}>
+                                <Image style={styles.image} source={{uri : item.CategoryImageUrl}}  />
+                            </View>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 ))
               }

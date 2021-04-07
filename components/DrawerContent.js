@@ -61,7 +61,7 @@ export default function DrawerContent({navigation}) {
               />
             )}
             label = "Product"
-            onPress = {() => { navigation.navigate('Product'); }}
+            onPress = {() => { navigation.navigate('Product',{ params: { CategoryId: '0'} } ) }}
           />
           <DrawerItem
             icon = {({color,size}) => (

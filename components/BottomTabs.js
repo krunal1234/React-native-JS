@@ -79,13 +79,25 @@ function HomeNavigator({navigation}) {
 
 const ProductStack = createStackNavigator();
 
-function ProductNavigator() {
+function ProductNavigator({navigation}) {
   return (
     <ProductStack.Navigator>
       <ProductStack.Screen
         name="Product"
         component={Product}
-        options={{ headerTitle: 'Product' }}
+        options={{ 
+          headerLeft: () => (
+            <Ionicons name="menu-outline" size={30} onPress={() => navigation.toggleDrawer()} color="#FFF" style={{marginLeft : 10}}/>
+          ),
+          headerTitle: '', 
+          headerTitleAlign: 'left', 
+          headerTintColor: 'white' , 
+          headerStyle:{ backgroundColor : '#d40000' },
+          headerTitleStyle: {
+            fontSize: 20,
+            fontWeight: "600"
+          },
+        }}
       />
     </ProductStack.Navigator>
   );
